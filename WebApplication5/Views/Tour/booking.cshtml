@@ -1,0 +1,209 @@
+﻿
+@{
+    ViewData["Title"] = "booking";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@{
+    var info = ViewBag.model;
+    var tour = ViewBag.tour;
+}
+<main class="main">
+    <div class="breadcrumb-layout">
+        <div class="bg-overlay"></div>
+        <div class="container-layout" style="background: content-box;">
+            <div class="breadcrumb-main">
+                <h1 class="zourney-title"> Tours Booking</h1>
+                <span>
+                    <a href="" class="home">
+                        <span>Home</span>
+                    </a>
+                </span>
+                <span>
+                    <a href="" class="post-page">
+                        <span>Tour list</span>
+                    </a>
+                </span>
+                <span>
+                    <a href="" class="post-page">
+                        <span>Tour Details</span>
+                    </a>
+                </span>
+                <span>
+                    <a href="" class="">
+                        <span>Tour Booking</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="container-layout">
+        <div class="detail-tour" style="margin-top: 20px;">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Select Tour</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Contact Details</li>
+                    <!-- <li class="breadcrumb-item"><a href="#">Payment</a></li> -->
+                </ol>
+            </nav>
+        </div>
+        <div class="layout-02">
+            <div class="row">
+                <div class="col-4 width-100 width-50">
+                    <div class="img-detail">
+                        <img src="~/@tour.diadiem[1].Images[1]" alt="">
+                    </div>
+                </div>
+                <div class="col-8 width-100 width-50">
+                    <div class="content-detail">
+                        <span class="single-address">Sigiriya, Colombo</span>
+                        <h1 class="heading-title">@tour.Name</h1>
+                        <table>
+                            <tr>
+                                <td><i class="fa-solid fa-calendar"></i> Departure Day</td>
+                                <td><span>@tour.startDate</span></td>
+                            </tr>
+                            <tr>
+                                @{var night = tour.num_day +1;}
+                                <td><i class="fa-solid fa-clock"></i> Period</td>
+                                <td><span>@night Days / @tour.num_day Night</span></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa-solid fa-person"></i> Available</td>
+                                <td><span>@tour.Amount</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-layout">
+        <div class="layout-02 booking-layout">
+            <div class="row">
+                <div class="col-md-8">
+                    <form action="/Tour/checkout" method="post">
+                   
+                        <h3 class="heading-title">Contact Details</h3>
+                        <div class="contact-form">
+                            <div class="contact-infor">
+                                <input type="hidden" required name="id_tour" value="@info.id_tour" />
+                                <input type="hidden" required name="amount_ticket" value="@info.amount_ticket"/>
+                                <div class="contact-infor__block">
+                                    <label for="name">Name*</label>
+                                    <input type="text" re name="Name" id="name" placeholder="Your Name">
+                                </div>
+                                <div class="contact-infor__block">
+                                    <label for="email">Email*</label>
+                                    <input type="email"  required name="Email" id="email" placeholder="Your Email">
+                                </div>
+                                <div class="contact-infor__block">
+                                    <label for="phone">Phone*</label>
+                                    <input type="text" required name="Phone" id="phone" placeholder="Your Phone">
+                                </div>
+                                <div class="contact-infor__block">
+                                    <label for="address">Address*</label>
+                                    <input type="text" required name="Address" id="address" placeholder="Your Address">
+                                </div>
+                             @*   <div class="contact-infor__block">
+                                    <label for="country">City*</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="contact-infor__block">
+                                    <label for="city">Ward*</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="contact-infor__block">
+                                    <label for="city">District*</label>
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Open this select menu</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="contact-infor__block">
+                                    <label for="zip">Zip</label>
+                                    <input type="text" id="zip" placeholder="Your Zip">
+                                </div>*@
+                                <div class="contact-infor__block">
+                                    <label for="messenger">Messenger</label>
+                                    <textarea name="Mssenger" id="" cols="30" rows="10" placeholder="writing something ..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                   
+                </div>
+                <div class="col-6 col-md-4 width-100" style="border-left: none;">
+                    <div class="sidebar-form">
+                        <div class="search-available">
+                            <div class="booking-form__block">
+                                <h6 class="post-title">@tour.Name</h6>
+                                    <div class="input-group">
+
+                                        <div class="booking-block">
+                                            <span class="booking_form" style="line-height: normal">
+                                            
+                                            </span>
+                                            <span class="booking-clock"></span>
+                                        </div>
+                                        <div class="booking-ticket">
+                                            <label class="booking_form">Tickets</label>
+                                            <div class="booking-guests-result">
+                                                <ul>
+                                                   
+                                                    <li>
+                                                        <span class="booking-title">Ticket</span>
+                                                        <span class="booking-price">@info.amount_ticket x @tour.Price</span>
+                                                        @{
+                                                            var value = info.amount_ticket * tour.Price;
+                                                        }
+                                                        <span class="booking-price"> $ @value</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+@*
+                                        <div class="detail-price">
+                                            <label class="booking_form">Detail Price</label>
+                                            <div class="detail-price__item">
+                                                <span class="detail-price__title">Total</span>
+                                                <span class="detail-price__price">$ @value</span>
+                                            </div>
+                                         
+                                          <div class="detail-price__item">
+                                                <span class="detail-price__title">Extra services</span>
+                                                <span class="detail-price__price">900.000đ</span>
+                                            </div>
+                                            <div class="detail-price__item">
+                                                <span class="detail-price__title">Coupon</span>
+                                                <span class="detail-price__price">-300.000đ</span>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <div class="total-group">
+                                        <label class="booking_form_input_label">Total Price</label>
+                                        <span class="currency_amount" data-amount="0"> $ @value</span>
+                                    </div>
+                                    <div class="submit-group">
+                                        <button type="submit">Book Now <i class="fa-solid fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

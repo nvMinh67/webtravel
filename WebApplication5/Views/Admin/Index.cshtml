@@ -1,0 +1,56 @@
+﻿    @model IEnumerable<WebApplication5.ViewModel.ListLocation>
+
+    @{
+        ViewData["Title"] = "Index";
+        Layout = "~/AdminPages/Shared/_Layout.cshtml";
+    }
+    <h1>Index</h1>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.TENDIADIEM)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DIACHI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MOTA)
+                </th>
+                <th>
+                   Image
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENDIADIEM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIACHI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MOTA)
+                </td>
+       
+                <td>
+                @foreach(var image in item.Images)
+                {
+                    <img src="@Url.Content(image)" width="95" title="cover" />
+                }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>

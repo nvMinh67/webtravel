@@ -1,0 +1,51 @@
+﻿@model WebApplication5.EditModel.LocationModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "CreateDiaDiem";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>CreateDiaDiem</h1>
+
+<h4>LocationModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateDiaDiem" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TENDIADIEM" class="control-label">@Model.TENDIADIEM</label>
+                <input asp-for="TENDIADIEM" class="form-control" />
+                <span asp-validation-for="TENDIADIEM" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DIACHI" class="control-label">@Model.DIACHI</label>
+                <input asp-for="DIACHI" class="form-control" />
+                <span asp-validation-for="DIACHI" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MOTA" class="control-label">@Model.MOTA</label>
+                <input asp-for="MOTA" class="form-control" />
+                <span asp-validation-for="MOTA" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MAP" class="control-label">@Model.MAP</label>
+                <input asp-for="MAP" class="form-control" />
+                <span asp-validation-for="MAP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Images" class="control-label">Images</label>
+                <input name="Images" type="file" multiple class="form-control" />
+                <span asp-validation-for="MAP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

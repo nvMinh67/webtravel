@@ -1,0 +1,123 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    line-height: 1.375;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    color: var(--text);
+    font-family: var(--body-font-family);
+    background-color: var(--background);
+    overflow-x: hidden;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--header);
+    color: var(--text);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.Navigation {
+    background-color: #000;
+    display: flex;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    margin: 0 auto;
+    padding: 0 25px;
+}
+
+    .navbar .logo {
+        display: flex;
+        align-items: center;
+    }
+
+        .navbar .logo img {
+            border-radius: 50%;
+        }
+
+        .navbar .logo h2 {
+            color: white;
+            font-size: 30px;
+            font-weight: 800;
+            margin-left: 5px;
+        }
+
+.menu-navbar {
+    padding-top: 25px;
+}
+
+    .menu-navbar ul {
+        display: flex;
+        list-style: none;
+    }
+
+        .menu-navbar ul li {
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            margin-left: 30px;
+            cursor: pointer;
+        }
+
+            .menu-navbar ul li a {
+                text-decoration: none;
+                color: white;
+                line-height: 43.5px;
+            }
+
+            .menu-navbar ul li .dropdow {
+                border: none;
+            }
+
+            .menu-navbar ul li a:hover {
+                border-bottom: 3px solid #f1c40f;
+            }
+
+            .menu-navbar ul li a.active {
+                border-bottom: 3px solid #f1c40f;
+            }
+
+.contact-navbar {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+}
+
+    .contact-navbar i {
+        color: white;
+        font-size: 15px;
+        margin-left: 20px;
+        padding-bottom: 20px;
+        cursor: pointer;
+    }
+
+    .contact-navbar p {
+        color: white;
+        font-size: 15px;
+        font-weight: 500;
+        margin-left: 10px;
+    }

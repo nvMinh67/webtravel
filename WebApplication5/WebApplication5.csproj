@@ -1,0 +1,84 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>c97a1f6f-eaca-4b51-8e41-1e328b3519a5</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="AdminPages\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FakeItEasy" Version="7.3.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.15" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\NewFolder\" />
+    <Folder Include="Uploaded\" />
+    <Folder Include="wwwroot\Uploaded\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\aboutUs\about_bg.jpg" />
+    <None Include="wwwroot\images\avarta.png" />
+    <None Include="wwwroot\images\breadcrumb.jpg" />
+    <None Include="wwwroot\images\checkout\vnpayqr-icon.webp" />
+    <None Include="wwwroot\images\detail-tour\bg_single_tour_1.jpeg" />
+    <None Include="wwwroot\images\detail-tour\img_single_tour_1.webp" />
+    <None Include="wwwroot\images\footer_img01.png" />
+    <None Include="wwwroot\images\footer_img02.png" />
+    <None Include="wwwroot\images\footer_img03.png" />
+    <None Include="wwwroot\images\footer_img04.png" />
+    <None Include="wwwroot\images\footer_img05.png" />
+    <None Include="wwwroot\images\home\banner1 - Copy.jpg" />
+    <None Include="wwwroot\images\home\banner1.jpg" />
+    <None Include="wwwroot\images\home\banner2.jpg" />
+    <None Include="wwwroot\images\home\banner3.jpg" />
+    <None Include="wwwroot\images\home\banner4.jpg" />
+    <None Include="wwwroot\images\home\blog_10-500x280.jpeg" />
+    <None Include="wwwroot\images\home\blog_7-500x280.jpeg" />
+    <None Include="wwwroot\images\home\blog_8-500x280.jpeg" />
+    <None Include="wwwroot\images\home\blog_9-500x280.jpeg" />
+    <None Include="wwwroot\images\home\FAQ_banner1.jpg" />
+    <None Include="wwwroot\images\home\FAQ_banner2.jpg" />
+    <None Include="wwwroot\images\home\h1_bg-1.png" />
+    <None Include="wwwroot\images\home\h1_deco.png" />
+    <None Include="wwwroot\images\home\h1_img-1.jpg" />
+    <None Include="wwwroot\images\home\h1_img.jpg" />
+    <None Include="wwwroot\images\home\h1_vector-1.png" />
+    <None Include="wwwroot\images\home\location2.jpg" />
+    <None Include="wwwroot\images\home\location3.jpg" />
+    <None Include="wwwroot\images\home\location4.jpg" />
+    <None Include="wwwroot\images\home\location5.jpg" />
+    <None Include="wwwroot\images\home\location6.jpg" />
+    <None Include="wwwroot\images\home\tour_1.jpg" />
+    <None Include="wwwroot\images\home\tour_13.jpg" />
+    <None Include="wwwroot\images\home\tour_2.jpg" />
+    <None Include="wwwroot\images\home\tour_3.jpg" />
+    <None Include="wwwroot\images\home\tour_4.jpg" />
+    <None Include="wwwroot\images\home\tour_5.jpg" />
+    <None Include="wwwroot\images\home\tour_6.jpg" />
+    <None Include="wwwroot\images\home\tour_9.jpg" />
+    <None Include="wwwroot\images\logo.jpg" />
+    <None Include="wwwroot\images\logo.svg" />
+    <None Include="wwwroot\js\script.js" />
+    <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\style.js" />
+  </ItemGroup>
+
+</Project>

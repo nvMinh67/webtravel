@@ -1,0 +1,1084 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using WebApplication5.Entity;
+@inject UserManager<ApplicationUser> UserManager;
+@inject SignInManager<ApplicationUser> signInManager;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@{
+    var locations = ViewBag.location;
+    var tours = ViewBag.tour;
+}
+<div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+        @{
+            foreach(var location in locations)
+            {
+                <div class="swiper-slide">
+                    <div class="banner">
+                        <img src="~/@location.Images[0]" alt="" style="width: 100%; height:100%;max-height:800px;">
+                        <div class="content-banner">
+                            <span class="banner-subtitle">Amazing Tour</span>
+                            <h1>Ventice</h1>
+                            <ul>
+                                <li>1023 reviews</li>
+                                <li>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <span>4,5/5</span>
+                                </li>
+                            </ul>
+                            <a href="">Discover Now</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+     
+      @*  <div class="swiper-slide">
+            <div class="banner">
+                <img src="~/images/home/banner2.jpg" alt="">
+                <div class="content-banner">
+                    <span class="banner-subtitle">Amazing Tour</span>
+                    <h1>Ventice</h1>
+                    <ul>
+                        <li>1023 reviews</li>
+                        <li>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span>4,5/5</span>
+                        </li>
+                    </ul>
+                    <a href="">Discover Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="banner">
+                <img src="~/images/home/banner3.jpg" alt="">
+                <div class="content-banner">
+                    <span class="banner-subtitle">Amazing Tour</span>
+                    <h1>Ventice</h1>
+                    <ul>
+                        <li>1023 reviews</li>
+                        <li>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span>4,5/5</span>
+                        </li>
+                    </ul>
+                    <a href="">Discover Now</a>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="banner">
+                <img src="~/images/home/banner4.jpg" alt="">
+                <div class="content-banner">
+                    <span class="banner-subtitle">Amazing Tour</span>
+                    <h1>Ventice</h1>
+                    <ul>
+                        <li>1023 reviews</li>
+                        <li>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <span>4,5/5</span>
+                        </li>
+                    </ul>
+                    <a href="">Discover Now</a>
+                </div>
+            </div>
+        </div>*@
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+   
+</div>
+</div>
+<div class="container-layout">
+    <div class="menu-search">
+        <div class="type-search">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+                        <div class="type-search-item">
+                            <i class="fa-regular fa-paper-plane"></i>
+                            <span>Where</span>
+                            <select name="search-where" id="">
+                                <option value="">--All where--</option>
+                                <option value="">--All where--</option>
+                                <option value="">--All where--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="type-search-item">
+                            <i class="fa-regular fa-flag"></i>
+                            <span>Type</span>
+                            <select name="search-type" id="">
+                                <option value="">All type--</option>
+                                <option value="">--All type--</option>
+                                <option value="">--All type--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="type-search-item">
+                            <i class="fa-regular fa-calendar-days"></i>
+                            <span>Date</span>
+                            <input type="text" id="datepicker" placeholder="(Date)">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <button class="btn-search">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="explore">
+    <div class="container-explore">
+        <div class="section-title">
+            <p class="sectitle">EXPLORE OUR TOURS</p>
+            <h2 class="subtitle">New and Most Popular Tours</h2>
+            <div class="wrap-divider">
+                <div class="container-divider">
+                    <div class="divider-separator"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="explore-slider">
+        <!-- Swiper -->
+        <div class="swiper mySwiper-slider">
+            <div class="swiper-wrapper">
+                @foreach(var tour in tours)
+                {
+                    <div class="swiper-slide">
+                        <div class="container-slider">
+                            <div class="img-slider">
+                                @{
+                                    var d = tour.diadiem;  
+                                }
+                                <img src="@Url.Content(d[0].Images[0])" alt="">
+                            </div>
+                            <div class="title-slider">
+                                <div class="price-tour">
+                                    <label>From</label>
+                                    <span>$@tour.Price</span>
+                                </div>
+                                <div class="content-slider">
+                                    <p></p>
+                                    <a href="">@tour.Name</a>
+                                    <ul>
+                                        <li>    
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>@tour.num_day days</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <span>4,5/5</span>
+                                        </li>
+                                    </ul>
+                                    <div class="read-more-item">
+                                        <a href=""><i class="fa-solid fa-arrow-right"></i></a>
+                                        @Html.ActionLink("More Information","DetailTour", "Tour", new {  id=tour.Id  }, new { @class=""})
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                
+               
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <!-- <div class="swiper-pagination"></div> -->
+        </div>
+    </div>
+    <div class="list-wrap">
+        <div class="list-item">
+            <div class="row">
+                <div class="col">
+                    <i class="fa-solid fa-suitcase-rolling"></i>
+                    <h6>Memorable Experiences</h6>
+                    <p>Browse and book tours and activities so incredible.</p>
+                </div>
+                <div class="col">
+                    <i class="fa-solid fa-campground"></i>
+                    <h6>Ultimate flexibility</h6>
+                    <p>You’re in control, with free cancellation and payment options.</p>
+                </div>
+                <div class="col">
+                    <i class="fa-solid fa-binoculars"></i>
+                    <h6>Extended Customization</h6>
+                    <p>Browse and book tours and activities so incredible.</p>
+                </div>
+                <div class="col">
+                    <i class="fa-solid fa-stopwatch"></i>
+                    <h6>Customer Satisfaction</h6>
+                    <p>Browse and book tours and activities so incredible.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="destination">
+        <div class="container-layout" style="background: repeat;">
+            <div class="explore">
+                <div class="container-explore">
+                    <div class="section-title">
+                        <p class="sectitle">CHOOSE YOUR EXPERIENCE</p>
+                        <h2 class="subtitle">Top Attractions Destinations</h2>
+                        <div class="wrap-divider">
+                            <div class="container-divider">
+                                <div class="divider-separator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row-destination">
+                <div class="layout-row">
+                    @{
+                        <div class="location-item">
+                            <a href="">
+                                <div class="img-location">
+                                    <img src="@Url.Content(tours[0].diadiem[0].Images[0])" alt="">
+                                    <div class="location-content">
+                                        <span class="location-name">@tours[0].Name</span>
+                                        <span class="location-count">6 Tours+</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    }
+                    @{
+                        <div class="location-item">
+                            <a href="">
+                                <div class="img-location">
+                                    <img src="../public/images/home/location3.jpg" alt="">
+                                    <div class="location-content">
+                                        <span class="location-name"></span>
+                                        <span class="location-count">6 Tours+</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    }
+                   
+                </div>
+                <div class="layout-row">
+                    @{
+                       <div class="location-item">
+                            <a href="">
+                                <div class="img-location">
+                                    <img src="../public/images/home/location4.jpg" alt="">
+                                    <div class="location-content">
+                                        <span class="location-name"></span>
+                                        <span class="location-count">6 Tours+</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    }
+                    @{
+                        <div class="location-item">
+                            <a href="">
+                                <div class="img-location">
+                                    <img src="../public/images/home/location5.jpg" alt="">
+                                    <div class="location-content">
+                                        <span class="location-name"></span>
+                                        <span class="location-count">6 Tours+</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    }
+               
+                    
+                    <div class="location-item">
+                        <a href="">
+                            <div class="img-location">
+                                <img src="../public/images/home/location6.jpg" alt="">
+                                <div class="location-content">
+                                    <span class="location-name">Oceania</span>
+                                    <span class="location-count">6 Tours+</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="choose-us">
+        <div class="container-choose">
+            <div class="row">
+                <div class="col">
+                    <div class="wrap-populated">
+                        <div class="wrap-heading">
+                            <div class="wrap-heading-container">
+                                <h4 class="wrap-heading-title">
+                                    We Create Journeys Worth Taking For The Traveler
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="section-title">
+                        <p class="sectitle">WHY CHOOSE US</p>
+                        <h2 class="subtitle">Our Experiences Meet High Quality Standards</h2>
+                        <div class="wrap-divider">
+                            <div class="container-divider">
+                                <div class="divider-separator"></div>
+                            </div>
+                            <p class="text">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="list-default">
+                        <div class="flex justify-center">
+                            <ul class="icon-list-items">
+                                <li class="icon-list-item">
+                                    <span class="icon-list-icon">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
+                                    <span class="icon-list-text">Professional Tour Guide</span>
+                                </li>
+                                <li class="icon-list-item">
+                                    <span class="icon-list-icon">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
+                                    <span class="icon-list-text">Exceptional flexibility</span>
+                                </li>
+                                <li class="icon-list-item">
+                                    <span class="icon-list-icon">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
+                                    <span class="icon-list-text">Quality you can trust</span>
+                                </li>
+                                <li class="icon-list-item">
+                                    <span class="icon-list-icon">
+                                        <i class="fa-solid fa-check"></i>
+                                    </span>
+                                    <span class="icon-list-text">Award-winning support </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="wrap-button">
+                        <a href="./contact.html" class="button-link">
+                            <span class="button-content">
+                                <span class="button-text">
+                                    Contact Us
+                                </span>
+                                <span class="button-icon">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="category">
+        <div class="container-category">
+            <div class="section-title">
+                <p class="sectitle">WHY CHOOSE US</p>
+                <h2 class="subtitle">Our Experiences Meet High Quality Standards</h2>
+                <div class="wrap-divider">
+                    <div class="container-divider">
+                        <div class="divider-separator"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="category-slider">
+                <div class="row">
+                    <div class="col">
+                        <div class="slick-list">
+                            <div class="slick-track">
+                                <a href="">
+                                    <div class="icon">
+                                        <i class="fas fa-mountain"></i>
+                                    </div>
+                                    <div class="content-location">
+                                        <span class="location-name">Adventural</span>
+                                        <span class="location-count">10 Tour+</span>
+                                        <span class="from">
+                                            <span>from</span>
+                                            <span>$125</span>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="slick-list">
+                            <div class="slick-track">
+                                <a href="#">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-umbrella-beach"></i>
+                                    </div>
+                                    <div class="content-location">
+                                        <span class="location-name">Beachs</span>
+                                        <span class="location-count">10 Tour+</span>
+                                        <span class="from">
+                                            <span>from</span>
+                                            <span>$125</span>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="slick-list">
+                            <div class="slick-track">
+                                <a href="" class="item-inner">
+                                    <div class="icon">
+                                        <i class="far fa-building"></i>
+                                    </div>
+                                    <div class="content-location">
+                                        <span class="location-name">City Tours</span>
+                                        <span class="location-count">10 Tour+</span>
+                                        <span class="from">
+                                            <span>from</span>
+                                            <span>$125</span>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="slick-list">
+                            <div class="slick-track">
+                                <a href="" class="item-inner">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-tree"></i>
+                                    </div>
+                                    <div class="content-location">
+                                        <span class="location-name">hiking</span>
+                                        <span class="location-count">10 Tour+</span>
+                                        <span class="from">
+                                            <span>from</span>
+                                            <span>$125</span>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="slick-list">
+                            <div class="slick-track">
+                                <a href="" class="item-inner">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-car-side"></i>
+                                    </div>
+                                    <div class="content-location">
+                                        <span class="location-name">Honeymoon</span>
+                                        <span class="location-count">10 Tour+</span>
+                                        <span class="from">
+                                            <span>from</span>
+                                            <span>$125</span>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="slick-list">
+                            <div class="slick-track">
+                                <a hre="" class="item-inner">
+                                    <div class="icon">
+                                        <i class="fa-solid fa-building-columns"></i>
+                                    </div>
+                                    <div class="content-location">
+                                        <span class="location-name">Museum Tours</span>
+                                        <span class="location-count">10 Tour+</span>
+                                        <span class="from">
+                                            <span>from</span>
+                                            <span>$125</span>
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-layout" style="padding-bottom: 120px;">
+        <div class="explore" style="padding-top: 120px;">
+            <div class="container-explore">
+                <div class="section-title">
+                    <p class="sectitle">BOOK NOW AND SAVE</p>
+                    <h2 class="subtitle">Last Minute Travel Deals</h2>
+                    <div class="wrap-divider">
+                        <div class="container-divider">
+                            <div class="divider-separator"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="explore-slider">
+            <!-- Swiper -->
+            <div class="swiper mySwiper-book">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="container-book">
+                            <a href="" class="img-book">
+                                <img src="../public/images/home/tour_1.jpg" alt="">
+                            </a>
+                            <div class="title-book">
+                                <p>Kathmandu, Nepal</p>
+                                <a href="" class="content-book">Uluru and Kings Canyon Discovery</a>
+                                <ul>
+                                    <li>
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>3 days</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <span>4,5/5</span>
+                                    </li>
+                                </ul>
+                                <div class="read-more-item">
+                                    <div class="price-book">
+                                        <span>From</span>
+                                        <span>$125</span>
+                                    </div>
+                                    <a href="">More Information <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="container-book">
+                            <a href="" class="img-book">
+                                <img src="../public/images/home/tour_2.jpg" alt="">
+                            </a>
+                            <div class="title-book">
+                                <p>Kathmandu, Nepal</p>
+                                <a href="" class="content-book">Uluru and Kings Canyon Discovery</a>
+                                <ul>
+                                    <li>
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>3 days</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <span>4,5/5</span>
+                                    </li>
+                                </ul>
+                                <div class="read-more-item">
+                                    <div class="price-book">
+                                        <span>From</span>
+                                        <span>$125</span>
+                                    </div>
+                                    <a href="">More Information <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="container-book">
+                            <a href="" class="img-book">
+                                <img src="../public/images/home/tour_3.jpg" alt="">
+                            </a>
+                            <div class="title-book">
+                                <p>Kathmandu, Nepal</p>
+                                <a href="" class="content-book">Uluru and Kings Canyon Discovery</a>
+                                <ul>
+                                    <li>
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>3 days</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <span>4,5/5</span>
+                                    </li>
+                                </ul>
+                                <div class="read-more-item">
+                                    <div class="price-book">
+                                        <span>From</span>
+                                        <span>$125</span>
+                                    </div>
+                                    <a href="">More Information <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="container-book">
+                            <a href="" class="img-book">
+                                <img src="../public/images/home/tour_4.jpg" alt="">
+                            </a>
+                            <div class="title-book">
+                                <p>Kathmandu, Nepal</p>
+                                <a href="" class="content-book">Uluru and Kings Canyon Discovery</a>
+                                <ul>
+                                    <li>
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>3 days</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <span>4,5/5</span>
+                                    </li>
+                                </ul>
+                                <div class="read-more-item">
+                                    <div class="price-book">
+                                        <span>From</span>
+                                        <span>$125</span>
+                                    </div>
+                                    <a href="">More Information <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="container-book">
+                            <a href="" class="img-book">
+                                <img src="../public/images/home/tour_5.jpg" alt="">
+                            </a>
+                            <div class="title-book">
+                                <p>Kathmandu, Nepal</p>
+                                <a href="" class="content-book">Uluru and Kings Canyon Discovery</a>
+                                <ul>
+                                    <li>
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>3 days</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <span>4,5/5</span>
+                                    </li>
+                                </ul>
+                                <div class="read-more-item">
+                                    <div class="price-book">
+                                        <span>From</span>
+                                        <span>$125</span>
+                                    </div>
+                                    <a href="">More Information <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="container-book">
+                            <a href="" class="img-book">
+                                <img src="../public/images/home/tour_6.jpg" alt="">
+                            </a>
+                            <div class="title-book">
+                                <p>Kathmandu, Nepal</p>
+                                <a href="" class="content-book">Uluru and Kings Canyon Discovery</a>
+                                <ul>
+                                    <li>
+                                        <i class="fa-regular fa-clock"></i>
+                                        <span>3 days</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <i class="fa-sharp fa-solid fa-star"></i>
+                                        <span>4,5/5</span>
+                                    </li>
+                                </ul>
+                                <div class="read-more-item">
+                                    <div class="price-book">
+                                        <span>From</span>
+                                        <span>$125</span>
+                                    </div>
+                                    <a href="">More Information <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div> -->
+                <!-- <div class="swiper-pagination"></div> -->
+            </div>
+        </div>
+    </div>
+    <div class="reviews-wrapper">
+        <div class="container-layout" style="background: repeat;">
+            <div class="explore">
+                <div class="container-explore">
+                    <div class="section-title">
+                        <p class="sectitle">CHOOSE YOUR EXPERIENCE</p>
+                        <h2 class="subtitle">Top Attractions Destinations</h2>
+                        <div class="wrap-divider">
+                            <div class="container-divider">
+                                <div class="divider-separator"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-reviews">
+                <!-- Swiper -->
+                <div class="swiper mySwiper-reviews">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="text-align item-inner">
+                                <div class="content">
+                                    “Customer service was professional. Highly recommend. Absolutely wonderful! Just the right amount of time spent snorkeling and one of the most beautiful beaches I have ever seen.”
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="name">Sofia Joly</div>
+                                    <div class="job">London, England</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="text-align item-inner">
+                                <div class="content">
+
+                                    “Customer service was professional. Highly recommend. Absolutely wonderful! Just the right amount of time spent snorkeling and one of the most beautiful beaches I have ever seen.”
+
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="name">Sofia Joly</div>
+                                    <div class="job">London, England</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="text-align item-inner">
+                                <div class="content">
+
+                                    “Customer service was professional. Highly recommend. Absolutely wonderful! Just the right amount of time spent snorkeling and one of the most beautiful beaches I have ever seen.”
+
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="name">Sofia Joly</div>
+                                    <div class="job">London, England</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="text-align item-inner">
+                                <div class="content">
+
+                                    “Customer service was professional. Highly recommend. Absolutely wonderful! Just the right amount of time spent snorkeling and one of the most beautiful beaches I have ever seen.”
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="name">Sofia Joly</div>
+                                    <div class="job">London, England</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="text-align item-inner">
+                                <div class="content">
+
+                                    “Customer service was professional. Highly recommend. Absolutely wonderful! Just the right amount of time spent snorkeling and one of the most beautiful beaches I have ever seen.”
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="name">Sofia Joly</div>
+                                    <div class="job">London, England</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="text-align item-inner">
+                                <div class="content">
+
+                                    “Customer service was professional. Highly recommend. Absolutely wonderful! Just the right amount of time spent snorkeling and one of the most beautiful beaches I have ever seen.”
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="name">Sofia Joly</div>
+                                    <div class="job">London, England</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="text-align item-inner">
+                                <div class="content">
+                                    “Customer service was professional. Highly recommend. Absolutely wonderful! Just the right amount of time spent snorkeling and one of the most beautiful beaches I have ever seen.”
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="name">Sofia Joly</div>
+                                    <div class="job">London, England</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="text-align item-inner">
+                                <div class="content">
+                                    “Customer service was professional. Highly recommend. Absolutely wonderful! Just the right amount of time spent snorkeling and one of the most beautiful beaches I have ever seen.”
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="name">Sofia Joly</div>
+                                    <div class="job">London, England</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="text-align item-inner">
+                                <div class="content">
+                                    “Customer service was professional. Highly recommend. Absolutely wonderful! Just the right amount of time spent snorkeling and one of the most beautiful beaches I have ever seen.”
+                                </div>
+                                <div class="rating">
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                    <i class="fa-sharp fa-solid fa-star"></i>
+                                </div>
+                                <div class="details">
+                                    <div class="name">Sofia Joly</div>
+                                    <div class="job">London, England</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <!-- <div class="swiper-pagination"></div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-layout">
+        <div class="explore" style="padding-top: 120px;">
+            <div class="container-explore">
+                <div class="section-title">
+                    <p class="sectitle">TRAVEL INSIGHTS & IDEAS</p>
+                    <h2 class="subtitle">Latest Travel Guides</h2>
+                    <div class="wrap-divider">
+                        <div class="container-divider">
+                            <div class="divider-separator"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blog-wrap">
+            <div class="row">
+                <div class="col">
+                    <div class="column-item">
+                        <div class="post-inner">
+                            <img src="~/images/home/blog_10-500x280.jpeg" alt="">
+                        </div>
+                        <div class="content-inner">
+                            <div class="header-inner">
+                                <div class="meta">
+                                    <div class="categories-link">
+                                        <a href="#">Travel</a>
+                                    </div>
+                                    <div class="posted-on">
+                                        <a href="#">May 20, 2020</a>
+                                    </div>
+                                    <div class="post-author">
+                                        <a href="#">By Admin</a>
+                                    </div>
+                                </div>
+                                <h3 class="title">
+                                    <a href="#">10 Best Places to Visit in Dalhousie, Himachal</a>
+                                </h3>
+                                <span class="line"></span>
+                            </div>
+                            <div class="content">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna lirabe ites ipsum dolor sit amet...
+                                </p>
+                                <div class="more-link-wrap">
+                                    <a href="#" class="more-link">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="column-inner">
+                        <div class="post-inner">
+                            <div class="post-thumb">
+                                <img src="~/images/home/blog_9-500x280.jpeg" alt="">
+                            </div>
+                            <div class="content-inner">
+                                <div class="header-inner">
+                                    <div class="meta">
+                                        <div class="posted-on">
+                                            <a href="#">May 20, 2020</a>
+                                        </div>
+                                        <div class="post-author">
+                                            <a href="#">By Admin</a>
+                                        </div>
+                                    </div>
+                                    <h3 class="title">
+                                        <a href="#">10 Best Places to Visit in Dalhousie, Himachal</a>
+                                    </h3>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column-inner">
+                        <div class="post-inner">
+                            <div class="post-thumb">
+                                <img src="~/images/home/blog_8-500x280.jpeg" alt="">
+                            </div>
+                            <div class="content-inner">
+                                <div class="header-inner">
+                                    <div class="meta">
+                                        <div class="posted-on">
+                                            <a href="#">May 20, 2020</a>
+                                        </div>
+                                        <div class="post-author">
+                                            <a href="#">By Admin</a>
+                                        </div>
+                                    </div>
+                                    <h3 class="title">
+                                        <a href="#">10 Best Places to Visit in Dalhousie, Himachal</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column-inner">
+                        <div class="post-inner">
+                            <div class="post-thumb">
+                                <img src="~/images/home/blog_7-500x280.jpeg" alt="">
+                            </div>
+                            <div class="content-inner">
+                                <div class="header-inner">
+                                    <div class="meta">
+                                        <div class="posted-on">
+                                            <a href="#">May 20, 2020</a>
+                                        </div>
+                                        <div class="post-author">
+                                            <a href="#">By Admin</a>
+                                        </div>
+                                    </div>
+                                    <h3 class="title">
+                                        <a href="#">10 Best Places to Visit in Dalhousie, Himachal</a>
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

@@ -1,0 +1,66 @@
+﻿@model WebApplication5.EditModel.TourModel
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "CreateTour";
+    Layout = "~/AdminPages/Shared/_Layout.cshtml";
+}
+
+<h1>CreateTour</h1>
+
+<h4>TourModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateTour">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="startDate" class="control-label"></label>
+                <input asp-for="startDate" class="form-control" />
+                <span asp-validation-for="startDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="endDate" class="control-label"></label>
+                <input asp-for="endDate" class="form-control" />
+                <span asp-validation-for="endDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="id_user" class="control-label"></label>
+                <select class="multi-select" id="my_multi_select1" asp-for="id_user" asp-items=@(new MultiSelectList(@ViewBag.user, "Id", "UserName"))></select>
+                <span asp-validation-for="id_user" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="id_diadiem" class="control-label"></label>
+                <select multiple="multiple" class="multi-select" id="my_multi_select1" asp-for="id_diadiem"  asp-items=@(new MultiSelectList(@ViewBag.diadiem, "ID", "TENDIADIEM"))></select>
+                <span asp-validation-for="id_diadiem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,0 +1,236 @@
+﻿
+@{
+    ViewData["Title"] = "checkout";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@{
+    var info = ViewBag.model;
+    var tour = ViewBag.tour;
+}
+
+
+<main class="main">
+    <div class="breadcrumb-layout">
+        <div class="bg-overlay"></div>
+        <div class="container-layout" style="background: content-box;">
+            <div class="breadcrumb-main">
+                <h1 class="zourney-title"> Tours Booking</h1>
+                <span>
+                    <a href="" class="home">
+                        <span>Home</span>
+                    </a>
+                </span>
+                <span>
+                    <a href="" class="post-page">
+                        <span>Tour list</span>
+                    </a>
+                </span>
+                <span>
+                    <a href="" class="post-page">
+                        <span>Tour Details</span>
+                    </a>
+                </span>
+                <span>
+                    <a href="" class="">
+                        <span>Tour Booking</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="container-layout" style="padding-top: 25px;">
+        <div class="layout-02 booking-layout">
+            <div class="row">
+                <div class="col-md-8">
+                    <h4 class="heading-title">Contact Details</h4>
+                    <div class="contact-detail">
+                        <div class="contact-item wrd">
+                            <table>
+                              
+                                <tr>
+                                    <td>Name:</td>
+                                    <td>@info.Name</td>
+                                </tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>@info.Email</td>
+                                </tr>
+                                <tr>
+                                    <td>Phone:</td>
+                                    <td>@info.Phone</td>
+                                </tr>
+                                <tr>
+                                    <td>Address:</td>
+                                    <td>@info.Address</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <form action="/Tour/Payment" method="post">
+                        <input type="hidden" value="@info.Name" name="Name"/>
+                        <input type="hidden" value="@info.Email" name="Email"/>
+                        <input type="hidden" value="@info.Phone" name="Phone"/>
+                        <input type="hidden" value="@info.Address" name="Address" />
+                        <input type="hidden" value="@tour.Id" name="id_tour" />
+                        <input type="hidden" value="@info.amount_ticket" name="amount_ticket" />
+                        <input type="hidden" value="=@info.Message" name="Note"/>
+              
+                    <h4 class="heading-title">Payment</h4>
+                    <label for="Payment">Payment Methods</label>
+                    <div class="row">
+                        <div class="col">
+                            <div class="detail-method">
+                                <div class="plt">
+                                    <div class="method">
+                                        <div onclick="payCash()">
+                                            <input  type="radio" name="Payment" class="checked" value="cash">
+                                        </div>
+                                        <label for="cash">Cash</label>
+                                    </div>
+                                    <i class="fa-solid fa-money-bill"></i>
+                                </div>
+                                <div class="content-method" id="byCash">
+                                    Please pay at any Zourney office nationwide and overseas branches. See details.
+                                </div>
+                            </div>
+                            <div class="detail-method">
+                                <div class="plt">
+                                    <div class="method">
+                                        <div onclick="payTransfer()">
+                                            <input type="radio" name="Payment" value="Transfer">
+                                        </div>
+                                        <label for="cash">Transfer</label>
+                                    </div>
+                                    <i class="fa-solid fa-building-columns"></i>
+                                </div>
+                                <div class="content-method" id="byTransfer">
+                                    <p style="text-align: justify;" class="content-payment">
+                                        After making the transfer, please send an email to
+                                        emb1910059@student.ctu.edu.com or call the hotline 123456789 for confirmation from our company.
+                                    </p>
+                                    <span>Name account: </span>
+                                    <span class="infor-payment">ZOURNEY</span>
+                                    <br>
+                                    <span>Number Account: </span>
+                                    <span class="infor-payment">02345 10546 6065</span>
+                                    <br>
+                                    <span>Bank: </span>
+                                    <span class="infor-payment">VietComBank - Can Tho</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="detail-method">
+                                <div class="plt">
+                                    <div class="method">
+                                        <div onclick="payMomo()">
+                                            <input type="radio" name="Payment" value="Mono" >
+                                        </div>
+                                        <label for="cash">Payment Momo</label>
+                                    </div>
+                                    <i class="fa-solid fa-qrcode"></i>
+                                </div>
+                                <div class="content-method" id="byMomo">
+                                    Please pay by wallet Momo.
+                                </div>
+                            </div>
+                            <div class="detail-method">
+                                <div class="plt">
+                                    <div class="method">
+                                        <div onclick="payVNPAY()">
+                                            <input type="radio" name="Payment" value="vnPay">
+                                        </div>
+                                        <label for="cash">Payment VNPAY</label>
+                                    </div>
+                                    <i class="payment-icon payment-icon--1"></i>
+                                </div>
+                                <div class="content-method" id="byVNPay">
+                                    Please pay by port payment electronic VNPAY.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 width-100" style="border-left: none;">
+                    <div class="sidebar-form">
+                        <div class="search-available">
+                            <div class="booking-form__block">
+                                <h6 class="post-title">@tour.Name</h6>
+                                    <div class="input-group">
+
+                                        <div class="booking-block">
+                                            <span class="booking_form" style="line-height: normal">
+                                            
+                                            </span>
+                                            <span class="booking-clock"></span>
+                                        </div>
+                                        <div class="booking-ticket">
+                                            <label class="booking_form">Tickets</label>
+                                            <div class="booking-guests-result">
+                                                <ul><li>
+                                                        <span class="booking-title">Ticket</span>
+                                                        <span class="booking-price">@info.amount_ticket x @tour.Price</span>
+                                                        @{ var value = info.amount_ticket * tour.Price;}
+                                                        <input name="total_price" value="@value" type="hidden" />
+                                                        <span class="booking-price">@value</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                       @* <div class="services-block">
+                                            <label class="booking_form">Extra services</label>
+                                            <div class="list-services">
+                                                <i class="qtip tip-left"
+                                                   data-tip="Lorem ipsum dolor sit amet, utinam munere antiopam vel ad. Qui eros iusto te. Nec ad feugiat honestatis. Quo illum detraxit an. Ius eius quodsi molestiae at, nostrum definitiones his cu. Discere referrentur mea id, an pri novum possim deterruisset. Eum oratio reprehendunt cu. Nec te quem assum postea.">
+                                                    <label for="booking-extra">Service per booking</label>
+                                                    <span class="price-extra">300.000đ</span>
+                                                </i>
+
+                                                <i class="qtip tip-left"
+                                                   data-tip="Lorem ipsum dolor sit amet, utinam munere antiopam vel ad. Qui eros iusto te. Nec ad feugiat honestatis. Quo illum detraxit an. Ius eius quodsi molestiae at, nostrum definitiones his cu. Discere referrentur mea id, an pri novum possim deterruisset. Eum oratio reprehendunt cu. Nec te quem assum postea.">
+
+                                                    <label for="booking-extra">Service per booking</label>
+                                                    <span class="price-extra">300.000đ</span>
+                                                </i>
+
+                                                <i class="qtip tip-left"
+                                                   data-tip="Lorem ipsum dolor sit amet, utinam munere antiopam vel ad. Qui eros iusto te. Nec ad feugiat honestatis. Quo illum detraxit an. Ius eius quodsi molestiae at, nostrum definitiones his cu. Discere referrentur mea id, an pri novum possim deterruisset. Eum oratio reprehendunt cu. Nec te quem assum postea.">
+
+                                                    <label for="booking-extra">Service per booking</label>
+                                                    <span class="price-extra">300.000đ</span>
+                                                </i>
+                                            </div>
+                                        </div>
+
+                                        <div class="detail-price">
+                                            <label class="booking_form">Detail Price</label>
+                                            <div class="detail-price__item">
+                                                <span class="detail-price__title">Subtotal</span>
+                                                <span class="detail-price__price">1.100.000đ</span>
+                                            </div>
+                                            <div class="detail-price__item">
+                                                <span class="detail-price__title">Extra services</span>
+                                                <span class="detail-price__price">900.000đ</span>
+                                            </div>
+                                            <div class="detail-price__item">
+                                                <span class="detail-price__title">Coupon</span>
+                                                <span class="detail-price__price">-300.000đ</span>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <div class="total-group">
+                                        <label class="booking_form_input_label">Total Price</label>
+                                        <span class="currency_amount" data-amount="0">$ @value</span>
+                                    </div>
+                                    <div class="submit-group">
+                                        <button type="submit">Book Now <i class="fa-solid fa-arrow-right"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    var tours = ViewBag.tours;
+}
+@foreach (var tour in tours)
+{
+    <div class="container-book">
+        <a href="/id?id=@tour.Id" class="img-book">
+            <img src="~/@tour.diadiem[0].Images[0]" alt="">
+        </a>
+        <div class="title-book">
+            <p>Kathmandu, Nepal</p>
+            <a href="" class="content-book">@tour.Name</a>
+            <ul>
+                <li>
+                    <i class="fa-regular fa-clock"></i>
+                    <span>3 days</span>
+                </li>
+                <li>
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                    <i class="fa-sharp fa-solid fa-star"></i>
+                    <span>4,5/5</span>
+                </li>
+            </ul>
+            <div class="read-more-item">
+                <div class="price-book">
+                    <span>From</span>
+                    <span>$125</span>
+                </div>
+                <a href="">More Information <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+
+
+}

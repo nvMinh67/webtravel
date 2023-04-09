@@ -1,0 +1,843 @@
+﻿@model WebApplication5.ViewModel.TourVM
+
+@{
+    ViewData["Title"] = "DetailTour";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+@{
+    var tours = ViewBag.tour1;
+}
+<div class="breadcrumb-layout">
+    <div class="bg-overlay"></div>
+    <div class="container-layout" style="background: content-box;">
+        <div class="breadcrumb-main">
+            <h1 class="zourney-title"> Tours Booking</h1>
+            <span>
+                <a href="" class="home">
+                    <span>Home</span>
+                </a>
+            </span>
+            <span>
+                <a href="" class="post-page">
+                    <span>Tour list</span>
+                </a>
+            </span>
+            <span>
+                <a href="" class="post-page">
+                    <span>Tour Details</span>
+                </a>
+            </span>
+            <span>
+                <a href="" class="">
+                    <span>Tour Booking</span>
+                </a>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="container-layout" style="padding-top: 80px">
+    <div class="layout-02">
+        <div class="row">
+            <div class="col-md-8 width-100">
+                <div class="bade-result">
+                    <div class="count-post"></div>
+                    <div class="filter-sort"><i class="fa-regular fa-heart"></i> Add to wishlist</div>
+                </div>
+                <h1 class="heading-title">@tours.Name</h1>
+                <div class="row">
+                    <div class="col">
+                        <div class="inner">
+                            <label>From</label>
+                            <span class="currency-amount">$@tours.Price</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="inner">
+                            <label>From</label>
+                            <span>@tours.num_day days</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="inner">
+                            <label>Max people</label>
+                            <span>100</span>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="inner">
+                            <label>Min age</label>
+                            <span>10+</span>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="inner">
+                            <label>Tour Type</label>
+                            <div class="type-tour">
+                                <a href="">Honeymoon,</a>
+                                <a href="">Museum Tours</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="inner">
+                            <label>Reviews</label>
+                            <div class="post-rating-star">
+                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <i class="fa-sharp fa-solid fa-star"></i>
+                                <span>4,5/5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bade-inner">
+                    <!-- Swiper -->
+                    <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff; z-index: 0;"
+                         class="swiper mySwiper2">
+                        <div class="swiper-wrapper">
+                          
+                       @{var d = tours.diadiem;}
+                            @foreach( var d1 in d)
+                            {
+                                @foreach(var d2 in d1.Images)
+                                {
+                                    <div class="swiper-slide">
+                                        <img src="@Url.Content(d2)" style="min-height:600px;max-height:600px;" />
+                                    </div>
+                                }
+                            }
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                    <div thumbsSlider="" class="swiper mySwiper-details" style="z-index: 0">
+                        <div class="swiper-wrapper">
+                        
+                            @foreach (var d1 in d)
+                            {
+                                @foreach (var d2 in d1.Images)
+                                {
+                                    <div class="swiper-slide">
+                                        <img src="@Url.Content(d2)" />
+                                    </div>
+                                }
+
+
+
+                            }
+                          
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 width-100" style="border-left: none;">
+                <div class="sidebar-form">
+                    <div class="search-available">
+                        <div class="booking-form__block">
+                            <h6 class="post-title">Book This Tour</h6>
+                            <form action="/tour/booking" method="post" class="booking-form">
+                                <div class="input-group">
+
+                                    <div class="booking-block">
+                                      @*  
+                                        <div class="booking-times" id="booking-times">
+                                            <span class="booking_time_line">
+                                                <input type="radio" name="" id="booking-time-1" class="booking-time" checked="checked">
+                                                <label for="booking-time-1">12:00</label>
+                                            </span>
+                                            <span class="booking_time_line">
+                                                <input type="radio" name="" id="booking-time-2" class="booking-time">
+                                                <label for="booking-time-2">17:00</label>
+                                            </span>
+                                        </div>*@
+                                    </div>
+               
+                                    <div class="booking-ticket">
+                                        <label class="booking_form">Tickets</label>
+                                        <div class="booking-guests-result">
+                                            <ul>
+                                                <li>
+                                                    <span class="booking-title">Amount</span>
+                                                    <span class="booking-price"> $ @tours.Price/People</span>
+                                                    <input class="id_tour" name="id_tour" value="@tours.Id" type="hidden" />
+                                                    <select name="amount_ticket" id="amount_number" onchange="selectTicket()">
+                                                     
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="services-block">
+                                        <label class="booking_form">Extra services</label>
+                                        <div class="list-services">
+                                            <i class="qtip tip-left"
+                                               data-tip="Lorem ipsum dolor sit amet, utinam munere antiopam vel ad. Qui eros iusto te. Nec ad feugiat honestatis. Quo illum detraxit an. Ius eius quodsi molestiae at, nostrum definitiones his cu. Discere referrentur mea id, an pri novum possim deterruisset. Eum oratio reprehendunt cu. Nec te quem assum postea.">
+                                                <input type="checkbox" id="booking-extra">
+                                                <label for="booking-extra">Service per booking</label>
+                                                <span class="price-extra">300.000đ</span>
+                                            </i>
+
+                                            <i class="qtip tip-left"
+                                               data-tip="Lorem ipsum dolor sit amet, utinam munere antiopam vel ad. Qui eros iusto te. Nec ad feugiat honestatis. Quo illum detraxit an. Ius eius quodsi molestiae at, nostrum definitiones his cu. Discere referrentur mea id, an pri novum possim deterruisset. Eum oratio reprehendunt cu. Nec te quem assum postea.">
+                                                <input type="checkbox" id="booking-extra">
+                                                <label for="booking-extra">Service per booking</label>
+                                                <span class="price-extra">300.000đ</span>
+                                            </i>
+
+                                            <i class="qtip tip-left"
+                                               data-tip="Lorem ipsum dolor sit amet, utinam munere antiopam vel ad. Qui eros iusto te. Nec ad feugiat honestatis. Quo illum detraxit an. Ius eius quodsi molestiae at, nostrum definitiones his cu. Discere referrentur mea id, an pri novum possim deterruisset. Eum oratio reprehendunt cu. Nec te quem assum postea.">
+                                                <input type="checkbox" id="booking-extra">
+                                                <label for="booking-extra">Service per booking</label>
+                                                <span class="price-extra">300.000đ</span>
+                                            </i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="total-group">
+                                    <label class="booking_form_input_label">Total</label>
+                                    <span>$
+                                        <span class="currency_amount" data-amount="0"> @tours.Price </span>
+                                    </span>
+                                </div>
+                                <div class="submit-group">
+                                    <button type="submit">Book Now <i class="fa-solid fa-arrow-right"></i></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-layout">
+    <div class="layout-02">
+        <div class="row">
+            <div class="col-md-8 width-100">
+                <div class="content-tabs">
+                    <div class="tab">
+                        <button class="tablinks active" onclick="openDescription(event, 'Overview')"
+                                id="defaultOpen">
+                            Overview
+                        </button>
+                        <button class="tablinks active" onclick="openDescription(event, 'Tourplan')">Tour plan</button>
+                        <button class="tablinks active" onclick="openDescription(event, 'Location')">Location</button>
+                        <button class="tablinks active" onclick="openDescription(event, 'Reviews')">Reviews</button>
+                    </div>
+
+                    <div id="Overview" class="tabcontent">
+                        <div class="content-tab">
+                            <h2 class="heading-title">description</h2>
+                            <div class="box">
+                                <input type="checkbox" name="readmore" id="readmore">
+                                <div class="content">
+                                    <div class="des">
+                                       
+                                    </div>
+                                    <div class="button">
+                                        <label for="readmore" data-more="View More" data-less="View Less"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="highlights-box">
+                            <div class="highlight-inner">
+                                <div class="thumb">
+                                    <img src="../public/images/detail-tour/img_single_tour_1.webp" alt="">
+                                </div>
+                                <div class="desc">
+                                    <h5 class="heading-title">Highlights</h5>
+                                    <ul class="list-items">
+                                        <li class="list-item">
+                                            <span class="item_icon"> <i class="fa-solid fa-check"></i></i> </span> <span class="list-text">Nepal most popular climb.</span>
+                                        </li>
+                                        <li class="list-item">
+                                            <span class="item_icon"> <i class="fa-solid fa-check"></i></i> </span>
+                                            <span class="list-text">
+                                                Outstanding views of Mt. Everest, Mt. Lhotse, Mt. Makalu from the
+                                                summit.
+                                            </span>
+                                        </li>
+                                        <li class="list-item">
+                                            <span class="item_icon"> <i class="fa-solid fa-check"></i></i> </span>
+                                            <span class="list-text">The perfect experience for adventurers!</span>
+                                        </li>
+                                        <li class="list-item">
+                                            <span class="item_icon"> <i class="fa-solid fa-check"></i></i> </span> <span class="list-text">5-day Prince Edward Island trip from Halifax</span>
+                                        </li>
+                                        <li class="list-item">
+                                            <span class="item_icon"> <i class="fa-solid fa-check"></i></i> </span> <span class="list-text">Explore scenic Prince Edward Island National Park</span>
+                                        </li>
+                                        <li class="list-item">
+                                            <span class="item_icon"> <i class="fa-solid fa-check"></i></i> </span>
+                                            <span class="list-text">Overnight accommodation and all transport included</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Tourplan" class="tabcontent">
+                        <h2 class="heading-title">Tour Plan</h2>
+                        <div class="container py-2 mt-4 mb-4">
+                            <!-- timeline item 1 -->
+                            <div class="row">
+                                <!-- timeline item 1 left dot -->
+                                <div class="col-auto text-center flex-column d-none d-sm-flex">
+                                    <div class="row h-50">
+                                        <div class="col">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                    <h5 class="m-2">
+                                        <span class="badge badge-pill bg-light border" style="border-radius: 20px;">&nbsp;</span>
+                                    </h5>
+                                    <div class="row h-50">
+                                        <div class="col border-right">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <!-- timeline item 1 event content -->
+                                <div class="col py-2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="float-right text-muted">Mon, Jan 9th 2019 7:00 AM</div>
+                                            <h4 class="card-title"><span>Day 1</span> Orientation</h4>
+                                            <p class="card-text">Welcome to the campus, introduction and get started with the tour.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/row-->
+                            <!-- timeline item 2 -->
+                            <div class="row">
+                                <div class="col-auto text-center flex-column d-none d-sm-flex">
+                                    <div class="row h-50">
+                                        <div class="col border-right">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                    <h5 class="m-2">
+                                        <span class="badge badge-pill bg-light border" style="border-radius: 20px;">&nbsp;</span>
+                                    </h5>
+                                    <div class="row h-50">
+                                        <div class="col border-right">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="col py-2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="float-right">Tue, Jan 10th 2019 8:30 AM</div>
+                                            <h4 class="card-title"><span>Day 2</span> Sessions</h4>
+                                            <p class="card-text">
+                                                Sign-up for the lessons and speakers that coincide with your course
+                                                syllabus. Meet and greet with instructors.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/row-->
+                            <!-- timeline item 3 -->
+                            <div class="row">
+                                <div class="col-auto text-center flex-column d-none d-sm-flex">
+                                    <div class="row h-50">
+                                        <div class="col border-right">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                    <h5 class="m-2">
+                                        <span class="badge badge-pill bg-light border" style="border-radius: 20px;">&nbsp;</span>
+                                    </h5>
+                                    <div class="row h-50">
+                                        <div class="col border-right">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="col py-2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="float-right text-muted">Wed, Jan 11th 2019 8:30 AM</div>
+                                            <h4 class="card-title"><span>Day 3</span> Sessions</h4>
+                                            <p>
+                                                Shoreditch vegan artisan Helvetica. Tattooed Codeply Echo Park Godard kogi, next level
+                                                irony ennui twee squid fap selvage. Meggings flannel Brooklyn literally small batch,
+                                                mumblecore PBR try-hard kale chips. Brooklyn vinyl lumbersexual
+                                                bicycle rights, viral fap cronut leggings squid chillwave pickled gentrify mustache. 3 wolf
+                                                moon hashtag church-key Odd Future. Austin messenger bag normcore, Helvetica Williamsburg
+                                                sartorial tote bag distillery Portland before
+                                                they sold out gastropub taxidermy Vice.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/row-->
+                            <!-- timeline item 4 -->
+                            <div class="row">
+                                <div class="col-auto text-center flex-column d-none d-sm-flex">
+                                    <div class="row h-50">
+                                        <div class="col border-right">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                    <h5 class="m-2">
+                                        <span class="badge badge-pill bg-light border" style="border-radius: 20px;">&nbsp;</span>
+                                    </h5>
+                                    <div class="row h-50">
+                                        <div class="col">&nbsp;</div>
+                                        <div class="col">&nbsp;</div>
+                                    </div>
+                                </div>
+                                <div class="col py-2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="float-right text-muted">Thu, Jan 12th 2019 11:30 AM</div>
+                                            <h4 class="card-title"><span>Day 4</span> Wrap-up</h4>
+                                            <p>Join us for lunch in Bootsy's cafe across from the Campus Center.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/row-->
+                        </div>
+                        <!--container-->
+                    </div>
+
+                    <div id="Location" class="tabcontent">
+                        <h2 class="heading-title">Location</h2>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19283.251721423236!2d105.76918086208926!3d10.022384179756541!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a088201d6fb47d%3A0x386e8daf62eeb4a8!2zQ8O0bmcgdmnDqm4gTMawdSBI4buvdSBQaMaw4bubYw!5e0!3m2!1svi!2s!4v1672991603194!5m2!1svi!2s"
+                                width="600" height="450" style="border:0; width:100%;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+
+                    <div id="Reviews" class="tabcontent">
+                        <h2 class="heading-title">Reviews</h2>
+                        <div class="container-rw">
+                            <div class="inner-rw">
+                                <div class="rating">
+                                    <span class="rating-num">4.0 /5</span>
+                                    <div class="rating-stars">
+                                        <span><i class="active icon-star"></i></span>
+                                        <span><i class="active icon-star"></i></span>
+                                        <span><i class="active icon-star"></i></span>
+                                        <span><i class="active icon-star"></i></span>
+                                        <span><i class="icon-star"></i></span>
+                                    </div>
+                                    <div class="rating-users">
+                                        <i class="icon-user"></i> 1,014,004 total
+                                    </div>
+                                </div>
+
+                                <div class="histo">
+                                    <div class="five histo-rate">
+                                        <span class="histo-star">
+                                            <i class="active icon-star"></i> 5
+                                        </span>
+                                        <span class="bar-block">
+                                            <span id="bar-five" class="bar">
+                                                <span>566,784</span>&nbsp;
+                                            </span>
+                                        </span>
+                                    </div>
+
+                                    <div class="four histo-rate">
+                                        <span class="histo-star">
+                                            <i class="active icon-star"></i> 4
+                                        </span>
+                                        <span class="bar-block">
+                                            <span id="bar-four" class="bar">
+                                                <span>171,298</span>&nbsp;
+                                            </span>
+                                        </span>
+                                    </div>
+
+                                    <div class="three histo-rate">
+                                        <span class="histo-star">
+                                            <i class="active icon-star"></i> 3
+                                        </span>
+                                        <span class="bar-block">
+                                            <span id="bar-three" class="bar">
+                                                <span>94,940</span>&nbsp;
+                                            </span>
+                                        </span>
+                                    </div>
+
+                                    <div class="two histo-rate">
+                                        <span class="histo-star">
+                                            <i class="active icon-star"></i> 2
+                                        </span>
+                                        <span class="bar-block">
+                                            <span id="bar-two" class="bar">
+                                                <span>44,525</span>&nbsp;
+                                            </span>
+                                        </span>
+                                    </div>
+
+                                    <div class="one histo-rate">
+                                        <span class="histo-star">
+                                            <i class="active icon-star"></i> 1
+                                        </span>
+                                        <span class="bar-block">
+                                            <span id="bar-one" class="bar">
+                                                <span>0</span>&nbsp;
+                                            </span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-list__wrap">
+                            <ol class="comment-list">
+                                <li class="comment">
+                                    <div class="comment-body">
+                                        <div class="comment-author">
+                                            <img src="../public/images/avarta.png" alt="" class="avatar">
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-head">
+                                                <div class="comment-meta">
+                                                    <cite class="fn">Joe Doe</cite>
+                                                    <a href="" class="comment-date">
+                                                        <time datetime="2022-06-30T03:32:01+00:00">June 30, 2022</time>
+                                                    </a>
+                                                </div>
+                                                <div class="reply">
+                                                    <a href="" class="comment-reply-link">
+                                                        Reply
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="comment-text">
+                                                <ul class="comment-rating-ul">
+                                                    <li>
+                                                        <span class="comment-rating-criterion">Location</span>
+                                                        <span class="comment-rating-stars stars">
+                                                            <span class="star star-1" data-rating-val="1">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-2" data-rating-val="2">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-3" data-rating-val="3">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-4" data-rating-val="4">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-5" data-rating-val="5">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                                <p>
+                                                    I am 6 feet tall and 220 lbs. This shirt fit me perfectly in the chest and shoulders. My
+                                                    only complaint is that it is so long! I like to wear polo shirts untucked. This shirt goes
+                                                    completely past my rear end. If I wore it with ordinary shorts, you probably
+                                                    wouldnt be able to see the shorts at all – completely hidden by the shirt. It needs to be
+                                                    4 to 5 inches shorter in terms of length to suit me. I have many RL polo shirts,
+                                                    and this one is by far the longest. I dont understand why.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="comment">
+                                    <div class="comment-body">
+                                        <div class="comment-author">
+                                            <img src="../public/images/avarta.png" alt="" class="avatar">
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-head">
+                                                <div class="comment-meta">
+                                                    <cite class="fn">Joe Doe</cite>
+                                                    <a href="" class="comment-date">
+                                                        <time datetime="2022-06-30T03:32:01+00:00">June 30, 2022</time>
+                                                    </a>
+                                                </div>
+                                                <div class="reply">
+                                                    <a href="" class="comment-reply-link">
+                                                        Reply
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="comment-text">
+                                                <ul class="comment-rating-ul">
+                                                    <li>
+                                                        <span class="comment-rating-criterion">Location</span>
+                                                        <span class="comment-rating-stars stars">
+                                                            <span class="star star-1" data-rating-val="1">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-2" data-rating-val="2">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-3" data-rating-val="3">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-4" data-rating-val="4">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-5" data-rating-val="5">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                        </span>
+                                                    </li>
+
+                                                </ul>
+                                                <p>
+                                                    I am 6 feet tall and 220 lbs. This shirt fit me perfectly in the chest and shoulders. My
+                                                    only complaint is that it is so long! I like to wear polo shirts untucked. This shirt goes
+                                                    completely past my rear end. If I wore it with ordinary shorts, you probably
+                                                    wouldnt be able to see the shorts at all – completely hidden by the shirt. It needs to be
+                                                    4 to 5 inches shorter in terms of length to suit me. I have many RL polo shirts,
+                                                    and this one is by far the longest. I dont understand why.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="comment">
+                                    <div class="comment-body">
+                                        <div class="comment-author">
+                                            <img src="../public/images/avarta.png" alt="" class="avatar">
+                                        </div>
+                                        <div class="comment-content">
+                                            <div class="comment-head">
+                                                <div class="comment-meta">
+                                                    <cite class="fn">Joe Doe</cite>
+                                                    <a href="" class="comment-date">
+                                                        <time datetime="2022-06-30T03:32:01+00:00">June 30, 2022</time>
+                                                    </a>
+                                                </div>
+                                                <div class="reply">
+                                                    <a href="" class="comment-reply-link">
+                                                        Reply
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="comment-text">
+                                                <ul class="comment-rating-ul">
+                                                    <li>
+                                                        <span class="comment-rating-criterion">Location</span>
+                                                        <span class="comment-rating-stars stars">
+                                                            <span class="star star-1" data-rating-val="1">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-2" data-rating-val="2">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-3" data-rating-val="3">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-4" data-rating-val="4">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                            <span class="star star-5" data-rating-val="5">
+                                                                <i class="fa-regular fa-star"></i>
+                                                            </span>
+                                                        </span>
+                                                    </li>
+                                                    <li>
+
+                                                </ul>
+                                                <p>
+                                                    I am 6 feet tall and 220 lbs. This shirt fit me perfectly in the chest and shoulders. My
+                                                    only complaint is that it is so long! I like to wear polo shirts untucked. This shirt goes
+                                                    completely past my rear end. If I wore it with ordinary shorts, you probably
+                                                    wouldnt be able to see the shorts at all – completely hidden by the shirt. It needs to be
+                                                    4 to 5 inches shorter in terms of length to suit me. I have many RL polo shirts,
+                                                    and this one is by far the longest. I dont understand why.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="comment-respond">
+                                        <span class="comment-reply-title">
+                                            Leave a Reply
+                                        </span>
+                                        <form action="" class="comment-form">
+                                            <p class="comment-notes">
+                                                <span id="email-notes">
+                                                    Your email address will not be
+                                                    published.
+                                                </span> <span class="required-field-message" aria-hidden="true">
+                                                    Required fields
+                                                    are marked <span class="required" aria-hidden="true">*</span>
+                                                </span>
+                                            </p>
+                                            <ul class="comment-form-rating-ul">
+                                                <li>
+                                                    <span class="comment-form-rating-criterion">Location</span>
+                                                    <span class="comment-form-rating-stars stars" data-rating-cr="location">
+                                                        <span class="star star-1" data-rating-val="1">
+                                                            <i class="fa-regular fa-star"></i>
+                                                        </span>
+                                                        <span class="star star-2" data-rating-val="2">
+                                                            <i class="fa-regular fa-star"></i>
+                                                        </span>
+                                                        <span class="star star-3" data-rating-val="3">
+                                                            <i class="fa-regular fa-star"></i>
+                                                        </span>
+                                                        <span class="star star-4" data-rating-val="4">
+                                                            <i class="fa-regular fa-star"></i>
+                                                        </span>
+                                                        <span class="star star-5" data-rating-val="5">
+                                                            <i class="fa-regular fa-star"></i>
+                                                        </span>
+                                                    </span>
+                                                </li>
+                                            </ul>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" size="30" placeholder="Your name*">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="email address*">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" placeholder="Your website*">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <textarea name="" id="" cols="45" rows="4" placeholder="comment"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <p class="comment-form-cookies-consent">
+                                                        <input id="wp-comment-cookies-consent"
+                                                               name="wp-comment-cookies-consent" type="checkbox" value="yes"> <label for="wp-comment-cookies-consent">
+                                                            Save my name, email, and website in this browser for
+                                                            the next
+                                                            time I comment.
+                                                        </label>
+                                                    </p>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <input name="submit" type="submit" id="submit" class="submit" value="Post Comment">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 width-100" style="border: none;">
+                <div class="tour-content__item">
+                    <div class="tour-content__item-grid">
+                        <div class="inner">
+                            <a href="#" class="inner-cta">
+                                <div class="cta-bg-wrapper">
+                                    <div class="bg"></div>
+                                    <div class="bg-overlay"></div>
+                                </div>
+                                <div class="cta-content">
+                                    <h2 class="cta-title">happy holiday</h2>
+                                    <div class="cta-description">
+                                        Stay &amp; Enjoy
+                                        <br>
+                                        <span style="font-size:16px; font-family: jost; font-weight:400; letter-spacing: 0; color:var(--text); ">
+                                            15%
+                                            off on all booking
+                                        </span>
+                                    </div>
+                                
+                                        <div class="cta-button__wrapper">
+                                            <button type="submit" class="cta-button">
+                                                Book now
+                                                <i class="fa-solid fa-arrow-right"></i>
+                                            </button>
+                                        </div>
+                                 
+                                  
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tour-content__item-grid">
+                        <div class="inner">
+                            <a href="#" class="inner-cta">
+                                <div class="cta-bg-wrapper">
+                                    <div class="bg"></div>
+                                    <div class="bg-overlay"></div>
+                                </div>
+                                <div class="cta-content">
+                                    <h2 class="cta-title">happy holiday</h2>
+                                    <div class="cta-description">
+                                        Stay &amp; Enjoy
+                                        <br>
+                                        <span style="font-size:16px; font-family:jost;font-weight:400; letter-spacing: 0; color:#FFFFFF; ">
+                                            starting
+                                            from <span style="font-size:18px; font-weight:600; color:#4BD31B;">$189</span>
+                                        </span>
+                                    </div>
+                                    <div class="cta-button__wrapper">
+                                        <span class="cta-button">
+                                            Book now
+                                            <i class="fa-solid fa-arrow-right"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    </div>
+<script>
+    //function (BookId) {
+    //    $.ajax({
+    //        type: 'POST', url: '/Book/AddToCart', data: { id: BookId }, success: function (data) {
+    //            $("#Cart_Amount").html(data.ItemAmount);
+    //        }
+    //    });
+    //}
+    //$('#amount_number').onchange(function(){
+    //    alert('hi');
+    //})
+    function selectTicket(){
+        var value = $('#amount_number').val();
+        var id = $('.id_tour').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Tour/calcPrice', data: { id: id,value:value }, 
+            success: function (data) {
+                $('.currency_amount').html(data.totalPrice);
+            },
+            error: function () {
+
+            }
+        });
+        
+    }
+</script>
+

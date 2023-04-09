@@ -1,0 +1,377 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+    var tours = ViewBag.tours;
+}
+
+<main class="main">
+    <div class="breadcrumb-layout">
+        <div class="bg-overlay"></div>
+        <div class="container-layout" style="background: content-box;">
+            <div class="breadcrumb-main">
+                <h1 class="zourney-title"> Tours List</h1>
+                <span>
+                    <a href="" class="home">
+                        <span>Home</span>
+                    </a>
+                </span>
+                <span>
+                    <a href="" class="post-page">
+                        <span>Tour list</span>
+                    </a>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="container-layout">
+        <div class="menu-search" style="bottom: 35px">
+            <div class="type-search">
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                            <div class="type-search-item">
+                                <i class="fa-regular fa-paper-plane"></i>
+                                <span>Where</span>
+                                <select name="search-where" id="">
+                                    <option value="">--All where--</option>
+                                    <option value="">--All where--</option>
+                                    <option value="">--All where--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="type-search-item">
+                                <i class="fa-regular fa-flag"></i>
+                                <span>Type</span>
+                                <select name="search-type" id="">
+                                    <option value="">All type--</option>
+                                    <option value="">--All type--</option>
+                                    <option value="">--All type--</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="type-search-item">
+                                <i class="fa-regular fa-calendar-days"></i>
+                                <span>Date</span>
+                                <input type="text" id="datepicker" placeholder="(Date)">
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <button class="btn-search">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-layout">
+        <div class="layout-02">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="bade-result">
+                        <div class="count-post">20 Tours</div>
+                        <div class="filter-sort">Sort by <i class="fa-solid fa-arrow-down-a-z"></i></div>
+                    </div>
+                    <div class="bade-inner">
+                        @foreach(var tour in tours)
+                        {
+                            <div class="container-book">
+                                <a href="/id?id=@tour.Id" class="img-book">
+                                    <img src="~/@tour.diadiem[0].Images[0]" alt="">
+                                </a>
+                                <div class="title-book">
+                                    <p>Kathmandu, Nepal</p>
+                                    <a href="" class="content-book">@tour.Name</a>
+                                    <ul>
+                                        <li>
+                                            <i class="fa-regular fa-clock"></i>
+                                            <span>3 days</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <i class="fa-sharp fa-solid fa-star"></i>
+                                            <span>4,5/5</span>
+                                        </li>
+                                    </ul>
+                                    <div class="read-more-item">
+                                        <div class="price-book">
+                                            <span>From</span>
+                                            <span>$125</span>
+                                        </div>
+                                        <a href="">More Information <i class="fa-solid fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        }
+                       
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 width-100">
+                    <div class="sidebar">
+                        <h6 class="heading-title">Filter by</h6>
+                        <div class="widget widger-price">
+                            <div class="title">
+                                Price Range
+                            </div>
+                            <div class="price-range-slider">
+                                <div id="slider-range" class="range-bar">
+                                    <input onchange="filterPrice()" id="pi_input" type="range" min="1" max="500" step="1" />
+                                    <p>300k - <output id="value"></output>k</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget widget-category">
+                            <div class="title">Categories</div>
+                            <div class="babe-search-filter-items">
+                                <div class="term-item">
+                                    <input type="checkbox" id="adventure"></input>
+                                    <label for="adventure">Adventure</label>
+                                </div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="beaches"></input>
+                                    <label for="beaches">Beaches</label>
+                                </div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="citytour"></input>
+                                    <label for="citytour">City Tour</label>
+                                </div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="hiking"></input>
+                                    <label for="hiking">Hiking</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget widget-destination">
+                            <div class="title">Destinations</div>
+                            <div class="babe-search-filter-items">
+                                <div class="term-item term-level-0">Afica</div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="morocco"></input>
+                                    <label for="morocco">Morocco</label>
+                                </div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="tanzania"></input>
+                                    <label for="tanzania">Tanzania</label>
+                                </div>
+                                <div class="term-item term-level-0">Americas</div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="canada"></input>
+                                    <label for="canada">Canada</label>
+                                </div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="argentina"></input>
+                                    <label for="argentina">Argentina</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget widget-reviews">
+                            <div class="title">Reviews</div>
+                            <div class="babe-search-filter-items">
+                                <div class="term-item">
+                                    <input type="checkbox" id="5star"></input>
+                                    <label for="5star">5 Star</label>
+                                </div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="4star"></input>
+                                    <label for="4star">4 Star & Up</label>
+                                </div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="3star"></input>
+                                    <label for="3star">3 Star & Up</label>
+                                </div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="2star"></input>
+                                    <label for="2star">2 Star & Up</label>
+                                </div>
+                                <div class="term-item">
+                                    <input type="checkbox" id="1star"></input>
+                                    <label for="1star">1 Star & Up</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="widget widget-post-list">
+                            <div class="title">Last Minute Deals</div>
+                            <div class="babe-search-filter-items">
+                                <div class="babe-items">
+                                    <div class="babe-items__inner">
+                                        <div class="item-img">
+                                            <div class="img-thumb">
+                                                <img src="../public/images/home/tour_9.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="item-text">
+                                            <div class="item-title">
+                                                <a href="">Maldives Sightseeing Adventure Tour</a>
+                                            </div>
+                                            <div class="item-info-price">
+                                                <label for="">From</label>
+                                                <span class="item-info-price-new">
+                                                    <span class="currency-amount" data-amount="177">
+                                                        <span class="currency-symbol">$</span>177
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="babe-items">
+                                    <div class="babe-items__inner">
+                                        <div class="item-img">
+                                            <div class="img-thumb">
+                                                <img src="../public/images/home/tour_9.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="item-text">
+                                            <div class="item-title">
+                                                <a href="">Maldives Sightseeing Adventure Tour</a>
+                                            </div>
+                                            <div class="item-info-price">
+                                                <label for="">From</label>
+                                                <span class="item-info-price-new">
+                                                    <span class="currency-amount" data-amount="177">
+                                                        <span class="currency-symbol">$</span>177
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-layout">
+        <div class="layout-02">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="tour-content__populated">
+                        <h4 class="heading-title">FAQs For Tour Packages</h4>
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne" style="box-shadow: none; border-color: none; color:black; background: content-box;">
+                                        <div class="accodition-title"><span style="color: var(--primary);">Q.</span> Can we customize our package with you?</div>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body" style="color: var(--text); font-size: 16px; padding: 10px 65px 0px 28px; font-style: italic;">The best destinations for honeymoon are Kerala, Goa, Uttarakhand, Andaman Islands, and Kashmir.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo" style="box-shadow: none; border-color: none; color:black; background: content-box;">
+                                        <div class="accodition-title"><span style="color: var(--primary);">Q.</span> Can we customize our package with you?</div>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body" style="color: var(--text); font-size: 16px; padding: 10px 65px 0px 28px; font-style: italic;">The best destinations for honeymoon are Kerala, Goa, Uttarakhand, Andaman Islands, and Kashmir.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree" style="box-shadow: none; border-color: none; color:black; background: content-box;">
+                                        <div class="accodition-title"><span style="color: var(--primary);">Q.</span> Why would we book our package?</div>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body" style="color: var(--text); font-size: 16px; padding: 10px 65px 0px 28px; font-style: italic;">The best destinations for honeymoon are Kerala, Goa, Uttarakhand, Andaman Islands, and Kashmir.</div>
+                                </div>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour" style="box-shadow: none; border-color: none; color:black; background: content-box;">
+                                        <div class="accodition-title"><span style="color: var(--primary);">Q.</span> How early should we book?</div>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body" style="color: var(--text); font-size: 16px; padding: 10px 65px 0px 28px; font-style: italic;">The best destinations for honeymoon are Kerala, Goa, Uttarakhand, Andaman Islands, and Kashmir.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 display-none width-100" style="border: none;">
+                    <div class="tour-content__item">
+                        <div class="tour-content__item-grid">
+                            <div class="inner">
+                                <a href="#" class="inner-cta">
+                                    <div class="cta-bg-wrapper">
+                                        <div class="bg"></div>
+                                        <div class="bg-overlay"></div>
+                                    </div>
+                                    <div class="cta-content">
+                                        <h2 class="cta-title">happy holiday</h2>
+                                        <div class="cta-description">
+                                            Stay &amp; Enjoy
+                                            <br>
+                                            <span style="font-size:16px; font-family: jost; font-weight:400; letter-spacing: 0; color:var(--text); ">15% off on all booking</span>
+                                        </div>
+                                        <div class="cta-button__wrapper">
+                                            <span class="cta-button">
+                                                Book now
+                                                <i class="fa-solid fa-arrow-right"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tour-content__item-grid">
+                            <div class="inner">
+                                <a href="#" class="inner-cta">
+                                    <div class="cta-bg-wrapper">
+                                        <div class="bg"></div>
+                                        <div class="bg-overlay"></div>
+                                    </div>
+                                    <div class="cta-content">
+                                        <h2 class="cta-title">happy holiday</h2>
+                                        <div class="cta-description">
+                                            Stay &amp; Enjoy
+                                            <br>
+                                            <span style="font-size:16px; font-family:jost;font-weight:400; letter-spacing: 0; color:#FFFFFF; ">starting from <span style="font-size:18px; font-weight:600; color:#4BD31B;">$189</span></span>
+                                        </div>
+                                        <div class="cta-button__wrapper">
+                                            <span class="cta-button">
+                                                Book now
+                                                <i class="fa-solid fa-arrow-right"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</main>
+
+<script type="text/javascript">
+    function filterPrice() {
+        var value = $('#pi_input').val();
+        $.ajax({
+            type: 'POST',
+            url: '/Tour/filterPrice', data: { price: value},
+            success: function (data) {
+               console.log(data);            },
+            error: function () {
+
+            }
+        });
+
+    }
+</script>
