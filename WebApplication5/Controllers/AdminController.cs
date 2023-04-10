@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Net.WebSockets;
 using WebApplication5.EditModel;
 using WebApplication5.Entity;
+using WebApplication5.Repositories;
 using WebApplication5.ViewModel;
 
 namespace WebApplication5.Controllers
@@ -16,13 +17,13 @@ namespace WebApplication5.Controllers
         private readonly MyDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly Microsoft.AspNetCore.Hosting.IHostingEnvironment _hostingEnvironment;
-        private readonly RoleManager<ApplicationUser> _roleManager;
+     
 
-        public AdminController(RoleManager<ApplicationUser> roleManager ,MyDbContext context,UserManager<ApplicationUser> userManager, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment) {
+        public AdminController(MyDbContext context,UserManager<ApplicationUser> userManager, Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnvironment ,IAccountRepository accountRepository) {
             _context = context;
             _userManager = userManager;
             _hostingEnvironment = hostingEnvironment;
-            _roleManager = roleManager;
+         
         }
         public IActionResult Index()
         {
@@ -89,6 +90,7 @@ namespace WebApplication5.Controllers
             ViewBag.user = user1;
             return View();
         }
+
         [HttpPost]
         public IActionResult CreateTour(TourModel model)
         {
